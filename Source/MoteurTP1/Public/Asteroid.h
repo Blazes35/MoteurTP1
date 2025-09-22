@@ -10,10 +10,13 @@ UCLASS()
 class MOTEURTP1_API AAsteroid : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:	
 	// Sets default values for this actor's properties
 	AAsteroid();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Asteroid")
+	int health=0;
+
 
 protected:
 	// Called when the game starts or when spawned
