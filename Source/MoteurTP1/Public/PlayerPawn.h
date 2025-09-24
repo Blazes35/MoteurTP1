@@ -3,18 +3,18 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputMappingContext.h"
 #include "GameFramework/Pawn.h"
-#include "Asteroid.generated.h"
-
-class UFloatingPawnMovement;
+#include "PlayerPawn.generated.h"
 
 UCLASS()
-class MOTEURTP1_API AAsteroid : public APawn
+class MOTEURTP1_API APlayerPawn : public APawn
 {
 	GENERATED_BODY()
 
 public:
-	AAsteroid();
+	APlayerPawn();
+
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -27,18 +27,20 @@ protected:
 	UPROPERTY(Category=Pawn, VisibleAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess="true"))
 	UPawnMovementComponent* MovementComponent;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
-	FVector MovementDirection;
+	UFUNCTION(BlueprintCallable)
+	void Move(FVector2D Direction);
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
-	int Health;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
-	float MinScale;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
-	float MaxScale;
-
+	UFUNCTION(BlueprintCallable)
+	void SpawnObject();
 	UFUNCTION()
 	void OnOverlap(AActor* MyActor, AActor* OtherActor);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Spaceship")
+	TSubclassOf<AActor> ObjectToSpawn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	FVector2D MinBounds;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	FVector2D MaxBounds;
+
 };
