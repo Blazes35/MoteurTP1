@@ -15,7 +15,14 @@ class MOTEURTP1_API ASpacePlayerState : public APlayerState
 	GENERATED_BODY()
 
 public:
+	ASpacePlayerState();
+	virtual void Tick(float DeltaTime) override;
+	void GetDamage();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int PlayerHealth;
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bIsGamePaused;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Score")
+	double TimeScore; 
 };

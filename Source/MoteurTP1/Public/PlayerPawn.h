@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "InputMappingContext.h"
+#include "SpacePlayerState.h"
 #include "GameFramework/Pawn.h"
 #include "PlayerPawn.generated.h"
 
@@ -29,12 +30,13 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void Move(FVector2D Direction);
-
-	UFUNCTION(BlueprintCallable)
-	void SpawnObject();
+	
 	UFUNCTION()
 	void OnOverlap(AActor* MyActor, AActor* OtherActor);
-
+	
+	UFUNCTION(BlueprintCallable)
+	void SpawnObject();
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Spaceship")
 	TSubclassOf<AActor> ObjectToSpawn;
 
@@ -43,4 +45,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	FVector2D MaxBounds;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerState")
+	ASpacePlayerState* SpacePlayerState;
 };

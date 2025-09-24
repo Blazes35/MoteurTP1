@@ -74,3 +74,19 @@ void AAsteroid::OnOverlap(AActor* MyActor, AActor* OtherActor)
 		}
 	}
 }
+
+void AAsteroid::SpawnObject()
+{
+	FVector Location = GetActorLocation();
+
+	if (ObjectToSpawn)
+	{
+		GetWorld()->SpawnActor<AActor>(ObjectToSpawn, Location, FRotator(0, 0, 0));
+	}
+}
+
+void AAsteroid::Destroyed()
+{
+	Super::Destroyed();
+	SpawnObject();
+}

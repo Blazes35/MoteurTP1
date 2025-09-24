@@ -17,6 +17,7 @@ public:
 	AAsteroid();
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void Destroyed() override;
 
 protected:
 	virtual void BeginPlay() override;
@@ -41,4 +42,10 @@ protected:
 
 	UFUNCTION()
 	void OnOverlap(AActor* MyActor, AActor* OtherActor);
+	
+	UFUNCTION(BlueprintCallable)
+	void SpawnObject();
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Spaceship")
+	TSubclassOf<AActor> ObjectToSpawn;
 };

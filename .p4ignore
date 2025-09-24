@@ -25,6 +25,7 @@
 /.p4sync.txt
 /p4config.txt
 /.p4config
+/.git/*
 
 # Ignore all Visual Studio temp files.
 *.suo
